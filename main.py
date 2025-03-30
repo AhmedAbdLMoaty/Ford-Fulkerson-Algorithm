@@ -78,14 +78,12 @@ def generate_graph(num_nodes, edge_probability, min_capacity, max_capacity):
     sink = "T"
     added_edges = set()
 
-    # Connect source to some nodes
     for node in nodes:
         if random.random() < 0.8:
             cap = random.randint(min_capacity, max_capacity)
             g.add_edge(source, node, cap)
             added_edges.add((source, node))
 
-    # Connect internal nodes among themselves
     for u in nodes:
         for v in nodes:
             if u != v and (u, v) not in added_edges:
@@ -94,7 +92,6 @@ def generate_graph(num_nodes, edge_probability, min_capacity, max_capacity):
                     g.add_edge(u, v, cap)
                     added_edges.add((u, v))
 
-    # Connect some nodes to sink
     for node in nodes:
         if random.random() < 0.8:
             cap = random.randint(min_capacity, max_capacity)
